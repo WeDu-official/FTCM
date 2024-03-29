@@ -1,14 +1,14 @@
+import os
+import AFM
+import time
 import JAPFL
-import JSAPFL
 import PAPFL
 import HAPFL
 import CAPFL
-import KTAPFL
 import BAPFL
 import DAPFL
-import AFM
-import time
-import os
+import JSAPFL
+import KTAPFL
 import subprocess
 start_time = time.time()
 command2 = ''
@@ -514,8 +514,14 @@ def runner(code:str,programminglanguage:str,CAROCO:int,PRDF:str='',parallelrun:b
             fooe = open("run_system_functions_AOC.txt", 'w')
             fooe.write(code)
 SET_NO_STATEMENT_FUNCTION_CALLING = list_to_string(find_between2(options, '$<set no statement function calling>','/set no statement function calling>$', 1))
-def run(programminglanguage:str,CAROCO:int, runned:bool, returned:bool, file_path:str='', thecode:str='', PRDF:str='', Parallelrun:bool=False, showrunmessage:bool=True, showmessageshowingwarnings:bool=False,datalogfilename:str=''):
+def run(programminglanguage:str,CAROCO:int, returned:bool, file_path:str='', thecode:str='', PRDF:str='', Parallelrun:bool=False, showrunmessage:bool=True, showmessageshowingwarnings:bool=False,datalogfilename:str=''):
     func_mapping_var = {}
+    if CAROCO == 1:
+        runned = True
+    if CAROCO == 2:
+        runned = False
+    if CAROCO != 1 and CAROCO != 2:
+        print('the "CAROCO" parameter has an invalid value')
     fl = open('run_system_functions_AOC.txt','w')
     fl.write('')
     fl.close()
@@ -559,6 +565,9 @@ def run(programminglanguage:str,CAROCO:int, runned:bool, returned:bool, file_pat
                     return code
                 if runned == True and returned == False:
                     runner(code,programminglanguage,CAROCO,PRDF,Parallelrun,showrunmessage,showmessageshowingwarnings,returned,datalogfilename) # type: ignore
+                closersfa = open('run_system_functions_AOC.txt', 'w')
+                closersfa.write('')
+                closersfa.close()    
         else:
             print(f"The file '{file_path}' does not exist")
     else:
@@ -581,6 +590,9 @@ def run(programminglanguage:str,CAROCO:int, runned:bool, returned:bool, file_pat
             return code
         if runned == True and returned == False:
             runner(code,programminglanguage,CAROCO,PRDF,Parallelrun,showrunmessage,showmessageshowingwarnings,returned,datalogfilename) # type: ignore
+        closersfa = open('run_system_functions_AOC.txt', 'w')
+        closersfa.write('')
+        closersfa.close()       
 def parallelrunfilesgen(filename:str,fileformat:str):
     try:
         f = open(f'{filename}_PRDF{fileformat}','x')
