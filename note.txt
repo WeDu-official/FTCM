@@ -1,0 +1,15 @@
+when it say write the programming language name
+you can use letters and numbers and symbols
+but don't add any:
+1-spaces
+2-unicode letters
+
+and everything like these two
+
+when it say write the fileformat don't write
+the dot,let's take an example let's say you
+want to make 'miki' is the name of an
+fileformat you must write it like this:
+miki
+not like this:
+.miki
